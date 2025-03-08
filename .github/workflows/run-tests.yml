@@ -35,3 +35,4 @@ jobs:
         AZURE_OPENAI_KEY: ${{ secrets.AZURE_OPENAI_KEY }}
         AZURE_OPENAI_DEPLOYMENT: ${{ secrets.AZURE_OPENAI_DEPLOYMENT }}
         AZURE_OPENAI_REASONING_DEPLOYMENT: ${{ secrets.AZURE_OPENAI_REASONING_DEPLOYMENT }}
+        PYTHONPATH: ${{ github.workspace }}
