@@ -12,7 +12,7 @@ This demo application shows how AI-powered systems can function for generating l
 - **Automatic Compliance Check** against legal requirements
 - **DOCX Export** via Pandoc with template system
 
-## 📋 Workflow Example: Declaration of Commitment ("Verpflichtungserklärung")
+## 📋 Workflow Example: Declaration of Commitment 
 
 ### Phase 1: Multi-Agent Data Verification
 - **Technical Implementation**: 
