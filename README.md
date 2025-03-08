@@ -101,7 +101,7 @@ The demo requires the following environment variables in the `.env` file:
 ```env
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com
 AZURE_OPENAI_KEY=your-key
-AZURE_OPENAI_DEPLOYMENT=gpt-4o         # For Phase 1 (Multi-Agent System)
+AZURE_OPENAI_DEPLOYMENT=gpt-4o             # For Phase 1 (Multi-Agent System)
 AZURE_OPENAI_REASONING_DEPLOYMENT=o3-mini  # For Phase 2 (Document Generation)
 ```
 
