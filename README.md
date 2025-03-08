@@ -137,10 +137,6 @@ pytest
 
 MIT
 
-## 🤝 Contributing
-
-Contributions are welcome! Please read `CONTRIBUTING.md` for details.
-
 ## 🔒 Privacy & Disclaimer
 
 - This demo application processes data only locally and does not permanently store any personal information
