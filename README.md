@@ -70,10 +70,8 @@ Below is an example of the final document produced by the system, showing how th
 ## 🎯 Technical Architecture
 
 This demo demonstrates the following concepts:
-- **Multi-Agent Systems**: Using Microsoft Semantic Kernel for coordinated data processing
-- **Two-stage AI Pipeline**: 
-  - GPT-4 for complex data processing and verification
-  - Specialized reasoning model for document generation
+- **Multi-Agent Systems**: Using Microsoft Semantic Kernel to collect required data from our real-time systems to produce documents and to review compliance checklists step-by-step
+- **Reasoning Model Integration**: Using o3-mini model to produce consistent documents based on templates
 - **Intermediate Format Approach**: Markdown as flexible intermediate format before final export
 - **Template System**: Pandoc with custom templates for consistent layout
 
