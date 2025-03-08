@@ -107,10 +107,6 @@ AZURE_OPENAI_DEPLOYMENT=gpt-4o         # For Phase 1 (Multi-Agent System)
 AZURE_OPENAI_REASONING_DEPLOYMENT=o3-mini  # For Phase 2 (Document Generation)
 ```
 
-Optional:
-```env
-TELSEARCH_API_KEY=your-key  # For increased API limit at tel.search.ch
-```
 
 ## 🖥️ Usage
 
