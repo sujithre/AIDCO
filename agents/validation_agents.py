@@ -44,32 +44,32 @@ def create_validation_agents(kernel: Kernel) -> Tuple[ChatCompletionAgent, ChatC
         plugins=["compliance"],
         arguments=agent_args,
         instructions="""
-Du bist ein Validator-Agent für behördliche Dokumente. Deine Aufgabe ist die genaue Überprüfung jedes einzelnen Validierungspunkts.
+You are a validator agent for official documents. Your task is to carefully check each individual validation item.
 
-Für jeden Validierungspunkt:
-1. Prüfe genau ob die Anforderung erfüllt ist
-2. Erstelle ein Ergebnispaket:
+For each validation item:
+1. Check precisely whether the requirement is met.
+2. Create a result package:
    ```json
    {
-     "section": "Name der Sektion (z.B. 'Gesetzliche Grundlage')",
-     "item": "Der geprüfte Punkt als Text",
-     "status": "passed" oder "failed",
-     "details": "Begründung bei Fehler oder wichtige Anmerkung"
+     "section": "Name of the section (e.g., 'Legal Basis')",
+     "item": "The validation item as text",
+     "status": "passed" or "failed",
+     "details": "Reason for failure or important note"
    }
    ```
-3. Konvertiere das JSON zu einem String mit JSON.stringify()
-4. Speichere das Ergebnis:
+3. Convert the JSON to a string using JSON.stringify().
+4. Save the result:
    compliance.save_validation_result('{"section": "...", "item": "...", "status": "...", "details": "..."}')
-5. Gib "NEXT" aus wenn ein Punkt geprüft wurde
+5. Output "NEXT" after checking one item.
 
-WICHTIG:
-- Bitte prüfe immer NUR EINEN Punkt und warte auf den Reporter
-- Sei präzise in der Validierung und Begründung
-- Status MUSS entweder "passed" oder "failed" sein
-- Die JSON-Formatierung muss exakt stimmen
+IMPORTANT:
+- Always check ONLY ONE item and wait for the reporter.
+- Be precise in validation and reasoning.
+- Status MUST be either "passed" or "failed."
+- The JSON formatting must be exact.
 
-Beispiel für einen Aufruf:
-compliance.save_validation_result('{"section": "Gesetzliche Grundlage", "item": "§ 3 Abs. 3 ARG korrekt angegeben", "status": "passed", "details": "Die gesetzliche Grundlage ist vollständig und korrekt zitiert"}')
+Example of a call:
+compliance.save_validation_result('{"section": "Legal Basis", "item": "§ 3 para. 3 RRA correctly specified", "status": "passed", "details": "The legal basis is complete and correctly cited"}')
 """
     )
     
@@ -81,34 +81,34 @@ compliance.save_validation_result('{"section": "Gesetzliche Grundlage", "item": 
         plugins=["compliance"],
         arguments=agent_args,
         instructions="""
-Du bist ein Reporter-Agent für Validierungsergebnisse. Deine Aufgaben:
+You are a reporter agent for validation results. Your tasks:
 
-1. Überwache den Validierungsfortschritt:
-   - Prüfe nach jedem "NEXT" des Validators ob der aktuelle Abschnitt fertig ist
-   - Bestätige die Prüfung eines Abschnitts
-   - Signalisiere den nächsten zu prüfenden Abschnitt
+1. Monitor the validation progress:
+   - After each "NEXT" from the validator, check if the current section is complete.
+   - Confirm the completion of a section.
+   - Signal the next section to be validated.
 
-2. Verfolge diese Abschnitte:
-   - Gesetzliche Grundlage
-   - Korrekte Angaben zur Listenauskunft
-   - Verpflichtungserklärung - Allgemeine Pflichten
-   - Rechtsmittelbelehrung
+2. Track these sections:
+   - Legal Basis
+   - Correct Details for List Inquiry
+   - Declaration of Commitment - General Obligations
+   - Legal Remedies
 
-3. Nach jedem Abschnitt:
-   - Gib eine kurze Zusammenfassung
-   - Signalisiere den nächsten Abschnitt für den Validator
+3. After each section:
+   - Provide a brief summary.
+   - Signal the next section for the validator.
 
-4. Wenn alle Punkte geprüft wurden:
-   - Rufe compliance.mark_validation_complete() auf
-   - Gib "COMPLETE" aus
-   - Fasse die Ergebnisse zusammen
+4. When all items have been validated:
+   - Call compliance.mark_validation_complete().
+   - Output "COMPLETE."
+   - Summarize the results.
 
-BEISPIEL ZUSAMMENFASSUNG:
-"Abschnitt 'Gesetzliche Grundlage' fertig:
-✅ 2 Punkte bestanden
-❌ 1 Punkt fehlgeschlagen: § 3 ARG nicht korrekt zitiert
+EXAMPLE SUMMARY:
+"Section 'Legal Basis' complete:
+✅ 2 items passed
+❌ 1 item failed: § 3 RRA not correctly cited
 
-Nächster Abschnitt: 'Korrekte Angaben zur Listenauskunft'"
+Next section: 'Correct Details for List Inquiry'"
 """
     )
     

@@ -1,11 +1,11 @@
-1. Gesetzliche Grundlage
-☐ Sind die rechtlichen Grundlagen (§ 3 Abs. 3 ARG, Art. 292 StGB, § 34 Abs. 2 lit. b IDG i.V.m. § 25 IDV) korrekt und vollständig angegeben?
+1. Legal Basis  
+☐ Are the legal foundations (§ 3 para. 3 RRA, Art. 292 CC, § 34 para. 2 lit. b IDPA in conjunction with § 25 IDPO) correctly and completely specified?
 
-2. Listenauskunft
-☐ Sind sowohl die betroffene Personengruppe als auch der Zweck der Listenauskunft präzise und zulässig beschrieben?
+2. List Inquiry  
+☐ Are both the affected group of individuals and the purpose of the list inquiry precisely and lawfully described?
 
-3. Verpflichtungserklärung - Allgemeine Pflichten
-☐ Sind die grundlegenden Nutzungsauflagen (zweckgebundene Verwendung, keine Weitergabe an Dritte) klar formuliert?
+3. Declaration of Commitment - General Obligations  
+☐ Are the fundamental usage obligations (purpose-bound use, no transfer to third parties) clearly formulated?
 
-4. Rechtsmittelbelehrung
-☐ Wird korrekt auf das Gemeindegesetz (§§ 172 ff.) für mögliche Einsprüche hingewiesen?
+4. Legal Remedies  
+☐ Is there a correct reference to the Municipal Act (§§ 172 ff.) for possible appeals?

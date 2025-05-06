@@ -1,49 +1,49 @@
 <div style="text-align: right;">
-**Gemeinde Contoso**  
-Hauptstrasse 99, 9999 Contoso  
+**Municipality of Contoso**  
+Main Street 99, 9999 Contoso  
 </div>
 
-# Verfügung zur Bekanntgabe von Personendaten mit Verpflichtungserklärung
+# Order for Disclosure of Personal Data with Declaration of Commitment
 
-## Systematische Bekanntgabe von Personendaten aus dem Einwohnerregister durch die Gemeindeverwaltung (Listenauskunft) gemäss § 3 Abs. 3 Anmeldungs- und Registergesetz (ARG) des Kantons Contoso
+## Systematic Disclosure of Personal Data from the Resident Register by the Municipal Administration (List Inquiry) pursuant to § 3 para. 3 Registration and Register Act (RRA) of the Canton of Contoso
 
-### Verfügung:
+### Order:
 
-1. Die personenbezogenen Daten aus dem Einwohnerregister der Gemeinde Contoso werden an **{requestor_name}** (wohnhaft: {requestor_address}) übermittelt.
-   Der Zweck dieser Datenübermittlung ist ausschließlich: **{zweck}**
-   Die bereitgestellten Informationen umfassen folgende Adressen: {address_list}
+1. The personal data from the resident register of the Municipality of Contoso will be disclosed to **{requestor_name}** (residing at: {requestor_address}).  
+   The purpose of this data disclosure is exclusively: **{zweck}**  
+   The provided information includes the following addresses: {address_list}
 
-2. Die Bekanntgabe erfolgt unter der Voraussetzung, dass sich der Empfänger/die Empfängerin zur Einhaltung der folgenden Auflagen verpflichtet:
+2. The disclosure is subject to the condition that the recipient commits to complying with the following obligations:
 
-   a) Die übermittelten Adressen dürfen ausschließlich für den oben genannten Zweck genutzt werden.
+   a) The disclosed addresses may only be used for the purpose stated above.
 
-   b) Die Weitergabe oder der Verkauf der bekanntgegebenen Adressen an Dritte ist untersagt.
+   b) The transfer or sale of the disclosed addresses to third parties is prohibited.
 
-   c) Die Adresslisten sind unmittelbar nach Erfüllung des genannten Zwecks zu vernichten und dürfen nicht anderweitig erfasst oder verarbeitet werden.
+   c) The address lists must be destroyed immediately after fulfilling the stated purpose and may not be otherwise recorded or processed.
 
-3. Bei Verstoß gegen die oben genannten Auflagen findet Art. 292 des Strafgesetzbuches (StGB) Anwendung.
+3. In case of violation of the above obligations, Article 292 of the Criminal Code (CC) applies.
 
-   **Art. 292 StGB:**  
-   *„Wer der von einer zuständigen Behörde oder einem zuständigen Beamten unter Hinweis auf die Strafdrohung dieses Artikels an ihn erlassenen Verfügung nicht Folge leistet, wird mit Busse bestraft."*
+   **Article 292 CC:**  
+   *"Anyone who fails to comply with an order issued by a competent authority or official under threat of penalty under this article shall be fined."*
 
-4. **Gebühren:**  
-   Siehe § 34 Abs. 2 lit. b Informations- und Datenschutzgesetz (IDG) in Verbindung mit § 25 Informations- und Datenschutzverordnung (IDV) des Kantons Contoso.
-
----
-
-### Ort, Datum  
-**Unterschrift**  
-Für die Gemeinde  
-
-Rechtsmittelbelehrung gemäß §§ 172 ff. des Gemeindegesetzes des Kantons Contoso  
+4. **Fees:**  
+   See § 34 para. 2 lit. b Information and Data Protection Act (IDPA) in conjunction with § 25 Information and Data Protection Ordinance (IDPO) of the Canton of Contoso.
 
 ---
 
-### Einverstanden:
+### Place, Date  
+**Signature**  
+On behalf of the Municipality  
 
-**Ort, Datum**  
-**Unterschrift**  
-Der/Die Empfänger(in)  
+Legal Remedies pursuant to §§ 172 ff. of the Municipal Act of the Canton of Contoso  
+
+---
+
+### Agreement:
+
+**Place, Date**  
+**Signature**  
+The Recipient  
 
 ---
 

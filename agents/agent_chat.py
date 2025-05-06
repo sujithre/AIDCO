@@ -32,26 +32,28 @@ def setup_agent_chat(kernel: Kernel) -> AgentGroupChat:
         prompt=f"""
 {{{{$history}}}}
 
-Basierend auf dem Chat-Verlauf oben, wähle den nächsten geeigneten Agenten aus.
-Gib NUR EINEN dieser Namen zurück (kein anderer Text):
+Based on the chat history above, select the next appropriate agent.
+Return ONLY ONE of these names (no other text):
 {RETRIEVER}
 {REPORT_AGENT}
 
-Der Retriever Agent ({RETRIEVER}) ist verantwortlich für:
-- Durchführung der telsearch API-Abfragen für jede Person mit telsearch.search_person
-- Überprüfung ob Personen an der angegebenen Adresse wohnen
-- Extraktion der vollständigen Adressdaten aus den API-Antworten
+The Retriever Agent ({RETRIEVER}) is responsible for:
+- Performing telsearch API queries for each person using telsearch.search_person
+- Verifying if people reside at the specified address
+- Extracting complete address data from the API responses
 
-Der Report Agent ({REPORT_AGENT}) ist verantwortlich für:
-- Überprüfen ob alle Namen bereits überprüft wurden
-- Signalisieren wenn der Prozess abgeschlossen ist ("COMPLETE")
-- Zusammenfassung der Ergebnisse am Ende
-- Strukturierte Speicherung der Ergebnisse mit report.save_people_data()
+The Report Agent ({REPORT_AGENT}) is responsible for:
+- Checking if all names have already been verified
+- Signaling when the process is complete ("COMPLETE")
+- Summarizing the results at the end
+- Structuring and saving the results with report.save_people_data()
 
-Auswahlkriterien:
-- Wähle den {RETRIEVER}, wenn noch Namen überprüft werden müssen
-- Wähle den {REPORT_AGENT}, wenn mindestens eine Adressprüfung durchgeführt wurde und wir überprüfen sollten, ob alle Namen abgearbeitet sind
-- Wähle {REPORT_AGENT} auch, wenn der Retriever Agent bereits einige Zeit gearbeitet hat
+Selection criteria:
+- Choose {RETRIEVER} if there are still names to be verified
+- Choose {REPORT_AGENT} if at least one address verification has been performed and we need to check if all names have been processed
+- Also choose {REPORT_AGENT} if the Retriever Agent has already been working for some time
+- Choose {REPORT_AGENT} if the Retriever Agent has not been selected for a while
+- Please call {REPORT_AGENT} after the {RETRIEVER} has been called  to summarize the results
 """
     )
 

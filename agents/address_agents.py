@@ -44,11 +44,11 @@ def create_address_agents(kernel: Kernel) -> Tuple[ChatCompletionAgent, ChatComp
         plugins=["telsearch"],
         arguments=agent_args,
         instructions="""
-Adressverifizierer via tel.search.ch API:
-1. Namen in "Vorname Nachname" Format konvertieren
-2. API nutzen: telsearch.search_person(name="Vorname Nachname", location="gemeinde")
-3. Ergebnis formatieren: "[Vorname] [Nachname]: [Straße] [Nr], [PLZ] [Ort]" oder "NICHT GEFUNDEN"
-Für JEDEN Namen einen API-Aufruf durchführen.
+Address verifier via tel.search.ch API:
+1. Convert names into "FirstName LastName" format
+2. Use the API: telsearch.search_person(name="FirstName LastName", location="municipality")
+3. Format the result: "[FirstName] [LastName]: [Street] [No], [ZIP] [City]" or "NOT FOUND"
+Perform an API call for EACH name.
 """
     )
     
@@ -60,16 +60,16 @@ Für JEDEN Namen einen API-Aufruf durchführen.
         plugins=["report"],
         arguments=agent_args,
         instructions="""
-Sammle und speichere Adressverifizierungsergebnisse:
-1. Überwache, ob alle Personen verifiziert wurden
-2. "COMPLETE" ausgeben, wenn alle überprüft wurden
-3. Speichere Daten strukturiert mit report.save_people_data(people_data)
-   - people_data sollte ein JSON-Array mit allen Personen sein: 
+Collect and save address verification results:
+1. Monitor whether all people have been verified
+2. Output "COMPLETE" when all have been verified
+3. Save data in a structured format with report.save_people_data(people_data)
+   - people_data should be a JSON array with all people:
    - Format: [
-       {"firstname": "Hans", "lastname": "Müller", "address": "Bahnhofstrasse 10", "city": "8000 Zürich", "type": "requested"},
-       {"firstname": "Max", "lastname": "Mustermann", "address": "Hauptstrasse 1", "city": "8000 Zürich", "type": "requestor"}
+       {"firstname": "Hans", "lastname": "Müller", "address": "Bahnhofstrasse 10", "city": "8000 Zurich", "type": "requested"},
+       {"firstname": "Max", "lastname": "Mustermann", "address": "Main Street 1", "city": "8000 Zurich", "type": "requestor"}
      ]
-4. Rufe report.mark_complete() auf, wenn alle Personen verarbeitet wurden
+4. Call report.mark_complete() when all people have been processed
 """
     )
     

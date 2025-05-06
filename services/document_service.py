@@ -58,34 +58,34 @@ class DocumentService:
         Returns:
             Generated document text in markdown format
         """
-        print (context)
+        print(context)
         # Create prompt for document generation
         prompt = f"""
-Du bist ein Experte für das Erstellen von behördlichen Dokumenten nach strikten Formaten.
-Erstelle eine reale Verfügung (Kein Muster!) basierend auf der unten stehenden Vorlage.
+You are an expert in creating official documents following strict formats.
+Create a real document (not a template!) based on the template provided below.
 
-INFORMATIONEN ZUM EINSETZEN:
-1. Der Antragsteller: {context.requestor.full_name}
-   Adresse: {context.requestor.full_address or '[ADRESSE NICHT VERFÜGBAR]'}
-2. Liste der angefragten Personen:
+INFORMATION TO INCLUDE:
+1. The applicant: {context.requestor.full_name}
+   Address: {context.requestor.full_address or '[ADDRESS NOT AVAILABLE]'}
+2. List of requested individuals:
 """
         
         # Add each requested person
         for person in context.requested_people:
-            addr = person.full_address or "NICHT GEFUNDEN"
+            addr = person.full_address or "NOT FOUND"
             prompt += f"   - {person.full_name}: {addr}\n"
             
         prompt += f"""
-3. Zweck der Auskunft: {context.zweck}
-4. Gemeinde: {context.gemeinde}
+3. Purpose of the request: {context.zweck}
+4. Municipality: {context.gemeinde}
 
-ANWEISUNGEN:
-1. Nutze die Vorlage und füge alle Daten korrekt ein.
-2. Formatiere mehrere Personen als nummerierte Liste.
-3. Achte auf korrekte rechtliche Formulierungen.
-4. Gib nur den fertigen Dokumenttext im Markdown-Format zurück.
+INSTRUCTIONS:
+1. Use the template and insert all data correctly.
+2. Format multiple individuals as a numbered list.
+3. Ensure correct legal phrasing.
+4. Return only the completed document text in markdown format.
 
-VORLAGE:
+TEMPLATE:
 {self.verfuegung_template}
 """
 
@@ -104,7 +104,7 @@ VORLAGE:
     
     async def validate_document(self, document_text: str) -> Tuple[str, List[Dict], List[Dict]]:
         """
-        Validate a document against compliance rules using multi-agent system.
+        Validate a document against compliance rules using a multi-agent system.
         
         Args:
             document_text: The document text to validate
@@ -123,17 +123,17 @@ VORLAGE:
         
         # Create initial prompt for validation
         prompt = f"""
-Führe eine detaillierte Validierung des folgenden Dokuments durch.
-Prüfe jeden einzelnen Punkt in der Checkliste sorgfältig.
+Perform a detailed validation of the following document.
+Carefully check each item in the checklist.
 
-DOKUMENT:
+DOCUMENT:
 {document_text}
 
-VALIDIERUNGSCHECKLISTE:
+VALIDATION CHECKLIST:
 {self.validation_questions}
 
-Validator Agent: Prüfe jeden Punkt einzeln und speichere das Ergebnis mit compliance.save_validation_result()
-ComplianceReporter: Überwache den Fortschritt und markiere wenn alle Punkte geprüft wurden.
+Validator Agent: Check each item individually and save the result with compliance.save_validation_result()
+ComplianceReporter: Monitor progress and mark when all items have been checked.
 """
         
         # Start the validation chat

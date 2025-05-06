@@ -77,7 +77,7 @@ class TelsearchPlugin:
             entry_titles = re.findall(r"<entry>.*?<title[^>]*>(.*?)</title>", resp.text, re.DOTALL)
             if entry_titles:
                 print(f"DEBUG: Found entry titles: {entry_titles}")
-                
+                print(f"DEBUG: ResponseText: {resp.text}...")
             return resp.text
         except Exception as e:
             print(f"DEBUG: Error during API call: {str(e)}")

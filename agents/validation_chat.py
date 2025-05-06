@@ -32,34 +32,34 @@ def setup_validation_chat(kernel: Kernel) -> AgentGroupChat:
         prompt=f"""
 {{{{$history}}}}
 
-Basierend auf dem Chat-Verlauf oben, wähle den nächsten geeigneten Agenten aus.
-Gib NUR EINEN dieser Namen zurück (kein anderer Text):
+Based on the chat history above, select the next appropriate agent.
+Return ONLY ONE of these names (no other text):
 {VALIDATOR}
 {COMPLIANCE_REPORTER}
 
-Der Validator Agent ({VALIDATOR}):
-- Prüft jeden einzelnen Punkt nach einem strikten Schema
-- Konvertiert Ergebnisse in JSON-Strings
-- Speichert jeden Punkt mit compliance.save_validation_result()
-- Signalisiert "NEXT" nach jedem geprüften Punkt
+The Validator Agent ({VALIDATOR}):
+- Checks each individual item according to a strict schema
+- Converts results into JSON strings
+- Saves each item with compliance.save_validation_result()
+- Signals "NEXT" after each checked item
 
-Der ComplianceReporter Agent ({COMPLIANCE_REPORTER}):
-- Überwacht den Validierungsfortschritt
-- Fasst die Ergebnisse pro Abschnitt zusammen
-- Signalisiert wenn die Validierung abgeschlossen ist
-- Erstellt einen finalen Bericht mit allen Ergebnissen
+The ComplianceReporter Agent ({COMPLIANCE_REPORTER}):
+- Monitors the validation progress
+- Summarizes the results for each section
+- Signals when the validation is complete
+- Creates a final report with all results
 
-Auswahlkriterien:
-1. Wähle den {VALIDATOR} wenn:
-   - Ein neuer Validierungspunkt geprüft werden muss
-   - Der letzte Punkt gerade abgeschlossen wurde ("NEXT")
-   - Kein Abschnitt vollständig validiert wurde
+Selection criteria:
+1. Choose {VALIDATOR} if:
+   - A new validation item needs to be checked
+   - The last item was just completed ("NEXT")
+   - No section has been fully validated yet
 
-2. Wähle den {COMPLIANCE_REPORTER} wenn:
-   - Ein kompletter Abschnitt geprüft wurde
-   - Der Validator "NEXT" ausgegeben hat
-   - Wir eine Zwischenzusammenfassung benötigen
-   - Alle Punkte geprüft wurden
+2. Choose {COMPLIANCE_REPORTER} if:
+   - A complete section has been validated
+   - The validator has output "NEXT"
+   - An interim summary is needed
+   - All items have been validated
 """
     )
 

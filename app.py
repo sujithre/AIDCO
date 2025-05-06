@@ -125,7 +125,7 @@ class DocumentGeneratorApp:
         self.address_service = AddressVerificationService()
         self.document_service = DocumentService(self.kernel)
         self.export_service = ExportService()
-        
+
         # Create required directories
         os.makedirs("output", exist_ok=True)
         os.makedirs("templates", exist_ok=True)
@@ -150,97 +150,97 @@ class DocumentGeneratorApp:
         
         # List of available purposes (Zweck options)
         ZWECK_OPTIONS = [
-            "Nachbarschaftliche Kontaktaufnahme",
-            "Einmaliger Versand eines Spendenaufrufs",
-            "Organisation eines Quartierfests",
-            "Bürgerinitiative",
-            "Vereinsgründung"
+            "Neighborhood Contact",
+            "One-Time Sending of a Donation Request",
+            "Organization of a Neighborhood Festival",
+            "Citizen Initiative",
+            "Association Formation"
         ]
         
         with gr.Blocks(
-            title="Gemeinde Contoso Verpflichtungserklärungsgenerator",
+            title="Municipality  Declaration of Commitment Generator",
             css=AZURE_CSS,
             theme=gr.themes.Base()
         ) as interface:
             with gr.Blocks(elem_classes=["header-section"]):
                 gr.Markdown("""
-                # Gemeinde Contoso Verpflichtungserklärungsgenerator
+                # Municipality  Declaration of Commitment Generator
                 
-                Generiere rechtskonforme Verpflichtungserklärung für Einwohneranfragen.
+                Generate legally compliant declarations of commitment for resident requests.
                 """)
             
             # Phase 1: Data Collection
-            with gr.Tab("📝 Phase 1: Datenerfassung"):
+            with gr.Tab("📝 Phase 1: Data Collection"):
                 with gr.Blocks(elem_classes=["card"]):
                     with gr.Row():
                         with gr.Column():
-                            gr.Markdown("### Antragsteller")
+                            gr.Markdown("### Applicant")
                             req_firstname = gr.Textbox(
-                                label="Vorname",
+                                label="First Name",
                                 placeholder="Max",
                                 value=default_firstname
                             )
                             req_lastname = gr.Textbox(
-                                label="Nachname",
+                                label="Last Name",
                                 placeholder="Mustermann",
                                 value=default_lastname
                             )
                         
                         with gr.Column():
-                            gr.Markdown("### Anfrage Details")
+                            gr.Markdown("### Request Details")
                             gemeinde = gr.Textbox(
-                                label="Gemeinde",
+                                label="Municipality",
                                 value="Zürich",
-                                placeholder="z.B. Zürich"
+                                placeholder="e.g., Zürich"
                             )
                             zweck = gr.Dropdown(
-                                label="Zweck der Anfrage",
+                                label="Purpose of Request",
                                 choices=ZWECK_OPTIONS,
                                 value=ZWECK_OPTIONS[0]
                             )
                             
                 with gr.Blocks(elem_classes=["card"]):
                     people_list = gr.TextArea(
-                        label="Angefragte Personen (eine pro Zeile)",
+                        label="Requested People (one per line)",
                         placeholder="Hans Meier\nAnna Schmidt\nPeter Müller",
                         value=self.default_person_list,
                         lines=5
                     )
                     
-                    verify_btn = gr.Button("Adressen Verifizieren", elem_classes=["primary-button"])
+                    verify_btn = gr.Button("Verify Addresses", elem_classes=["primary-button"])
                     
                     with gr.Row():
                         verification_output = gr.Markdown(
-                            label="Verifikationsergebnisse",
+                            label="Verification Results",
                             value=""
                         )
                         verification_chat = gr.Chatbot(
-                            label="Adressverifikation Agenten",
+                            label="Address Verification Agents",
                             height=300
                         )
             
             # Phase 2: Document Generation
-            with gr.Tab("📋 Phase 2: Dokument Generierung"):
+            with gr.Tab("📋 Phase 2: Document Generation"):
                 with gr.Blocks(elem_classes=["card"]):
-                    generate_btn = gr.Button("Dokument Generieren", elem_classes=["primary-button"])
+                    generate_btn = gr.Button("Generate Document", elem_classes=["primary-button"])
                     document_text = gr.TextArea(
-                        label="Generiertes Dokument",
+                        label="Generated Document",
                         lines=20,
                         interactive=True
                     )
             
             # Phase 3: Validation
-            with gr.Tab("✅ Phase 3: Validierung"):
+            with gr.Tab("✅ Phase 3: Validation"):
                 with gr.Blocks(elem_classes=["card"]):
-                    validate_btn = gr.Button("Dokument Validieren", elem_classes=["primary-button"])
+                    validate_btn = gr.Button("Validate Document", elem_classes=["primary-button"])
                     with gr.Row():
                         validation_output = gr.Markdown(
-                            label="Validierungsergebnisse",
+                            label="Validation Results",
                             value="",
                             elem_classes=["validation-results"]
                         )
                         validation_chat = gr.Chatbot(
-                            label="Validierungs-Agenten",
+                            label="Validation Agents",
                             height=300
                         )
 
@@ -248,11 +248,11 @@ class DocumentGeneratorApp:
             with gr.Tab("💾 Phase 4: Export"):
                 with gr.Blocks(elem_classes=["card"]):
                     gr.Markdown("""
-                    ### Dokument Exportieren
+                    ### Export Document
                     
-                    Exportiere das Dokument als Word-Datei mit professionellem Layout.
+                    Export the document as a Word file with professional layout.
                     """)
-                    export_btn = gr.Button("Als DOCX Exportieren", elem_classes=["primary-button"])
+                    export_btn = gr.Button("Export as DOCX", elem_classes=["primary-button"])
                     export_status = gr.Markdown()
             
             # Wire up the interface
@@ -283,7 +283,7 @@ class DocumentGeneratorApp:
                             type=PersonType.REQUESTED
                         ))
                     except ValueError:
-                        raise ValueError(f"Ungültiges Format für Person: {line}")
+                        raise ValueError(f"Invalid format for person: {line}")
                 return people
             
             async def verify_addresses(
@@ -314,7 +314,7 @@ class DocumentGeneratorApp:
                         requestor=requestor,
                         requested_people=requested_people,
                         gemeinde=gemeinde,
-                        zweck="Adressverifikation" 
+                        zweck="Address Verification" 
                     )
                     
                     # Verify addresses
@@ -333,7 +333,7 @@ class DocumentGeneratorApp:
                     return summary, chat_messages
                     
                 except Exception as e:
-                    return f"⚠️ Fehler: {str(e)}", []
+                    return f"⚠️ Error: {str(e)}", []
             
             async def generate_document(
                 req_firstname: str,
@@ -401,7 +401,7 @@ class DocumentGeneratorApp:
                     return document
                     
                 except Exception as e:
-                    return f"⚠️ Fehler bei der Dokumentgenerierung: {str(e)}"
+                    return f"⚠️ Error during document generation: {str(e)}"
             
             async def validate_document(document_text: str) -> Tuple[str, List[Tuple[str, str]]]:
                 """Handle document validation."""
@@ -419,7 +419,7 @@ class DocumentGeneratorApp:
                     return report, chat_messages
                     
                 except Exception as e:
-                    return f"⚠️ Validierungsfehler: {str(e)}", []
+                    return f"⚠️ Validation error: {str(e)}", []
             
             async def export_document(document_text: str) -> str:
                 """Handle document export to Word format."""
@@ -433,12 +433,12 @@ class DocumentGeneratorApp:
                         date=date
                     )
                     
-                    return f"""✅ Dokument erfolgreich exportiert!
+                    return f"""✅ Document successfully exported!
                     
-                    Das Dokument wurde hier gespeichert: `{output_path}`"""
+                    The document was saved here: `{output_path}`"""
                     
                 except Exception as e:
-                    return f"⚠️ Exportfehler: {str(e)}"
+                    return f"⚠️ Export error: {str(e)}"
             
             # Connect components
             verify_btn.click(

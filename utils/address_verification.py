@@ -35,22 +35,22 @@ def _create_verification_prompt(
     requestor_name = f"{requestor_firstname} {requestor_lastname}"
     
     return f"""
-Ich muss Adressen für die folgenden Personen in {gemeinde} überprüfen (type = 'requested'):
+I need to verify addresses for the following people in {gemeinde} (type = 'requested'):
 {people_text}
 
-Zusätzlich muss ich die Adresse des Requestors finden (type = 'requestor'):
+Additionally, I need to find the address of the requestor (type = 'requestor'):
 {requestor_name} {requestor_lastname} 
 
-Retriever Agent: Überprüfe diese Personen mit telsearch.search_person(name="Vorname Nachname", location="{gemeinde}")
-Report Agent: Prüfe ob alle Namen überprüft wurden. Wenn ja, signalisiere "COMPLETE" und speichere mit report.save_people_data().
+Retriever Agent: Verify these people using telsearch.search_person(name="FirstName LastName", location="{gemeinde}")
+Report Agent: Check if all names have been verified. If yes, signal "COMPLETE" and save with report.save_people_data().
 
-Hier ein Beispiel:
+Here is an example:
 {{
   "firstname": "Steven", "lastname": "Hawking",
-  "address": "Hauptstrasse 1", "city": "8000 Zurich", "type": "requestor"
+  "address": "Main Street 1", "city": "8000 Zurich", "type": "requestor"
 }}
 
-Die anderen Personen sind vom Typ "requested".
+The other people are of type "requested".
 """
         
 async def verify_addresses(
@@ -105,6 +105,7 @@ async def verify_addresses(
     try:
         message_count = 0
         async for response in agent_chat.invoke():
+            print(f"Agent response: {response}")
             message_count += 1
             if message_count > MAX_MESSAGE_COUNT:
                 raise RuntimeError(f"Verification exceeded {MAX_MESSAGE_COUNT} messages without completion")
@@ -123,7 +124,7 @@ async def verify_addresses(
     except Exception as e:
         agent_messages.append({
             "role": "system", 
-            "content": f"Fehler: {str(e)}"
+            "content": f"Error: {str(e)}"
         })
         raise RuntimeError(f"Address verification failed: {str(e)}") from e
     
@@ -134,9 +135,9 @@ async def verify_addresses(
     
     summary_lines = []
     for name, addr in addresses_dict.items():
-        status = addr or "NICHT GEFUNDEN"
+        status = addr or "NOT FOUND"
         summary_lines.append(f"- {name}: {status}")
     
-    summary = "\n".join(summary_lines) if summary_lines else "Keine Adressen gefunden."
+    summary = "\n".join(summary_lines) if summary_lines else "No addresses found."
     
     return addresses_dict, summary, agent_messages

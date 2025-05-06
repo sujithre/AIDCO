@@ -72,7 +72,7 @@ class AddressVerificationService:
         
         agent_messages = []
         verification_complete = False
-        
+        print(f"DEBUG: Starting address verification for people")
         try:
             message_count = 0
             async for response in self.agent_chat.invoke():
@@ -109,10 +109,10 @@ class AddressVerificationService:
         # Create summary
         summary_lines = []
         for name, addr in addresses_dict.items():
-            status = addr or "NICHT GEFUNDEN"
+            status = addr or "NOT FOUND"
             summary_lines.append(f"- {name}: {status}")
         
-        summary = "\n".join(summary_lines) if summary_lines else "Keine Adressen gefunden."
+        summary = "\n".join(summary_lines) if summary_lines else "No addresses found."
         
         return addresses_dict, summary, agent_messages
     
@@ -120,7 +120,7 @@ class AddressVerificationService:
         """Create the initial prompt for address verification."""
         # Add requestor information
         prompt = f"""
-Ich muss Adressen für die folgenden Personen in {context.gemeinde} überprüfen (type = 'requested'):
+I need to verify addresses for the following people in {context.gemeinde} (type = 'requested'):
 """
         
         # Add each requested person
@@ -129,16 +129,16 @@ Ich muss Adressen für die folgenden Personen in {context.gemeinde} überprüfen
             
         # Add requestor verification request
         prompt += f"""
-Zusätzlich muss ich die Adresse des Requestors finden (type = 'requestor'):
+Additionally, I need to find the address of the requestor (type = 'requestor'):
 {context.requestor.firstname} {context.requestor.lastname}
 
-Retriever Agent: Überprüfe diese Personen mit telsearch.search_person(name="Vorname Nachname", location="{context.gemeinde}")
-Report Agent: Prüfe ob alle Namen überprüft wurden. Wenn ja, signalisiere "COMPLETE" und speichere mit report.save_people_data().
+Retriever Agent: Verify these people using telsearch.search_person(name="FirstName LastName", location="{context.gemeinde}")
+Report Agent: Check if all names have been verified. If yes, signal "COMPLETE" and save with report.save_people_data().
 
-Hier ein Beispiel für die JSON-Struktur:
+Here is an example of the JSON structure:
 {{
   "firstname": "Hans", "lastname": "Müller",
-  "address": "Bahnhofstrasse 10", "city": "8000 Zürich", "type": "requested"
+  "address": "Bahnhofstrasse 10", "city": "8000 Zurich", "type": "requested"
 }}
 """
         return prompt
