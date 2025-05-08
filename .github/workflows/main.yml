@@ -4,7 +4,8 @@ on:
 
 jobs:
   test:
-    runs-on: [self-hosted] # Specify the label of your self-hosted runner here
+    runs-on: windows-latest # Specify the label of your self-hosted runner here
+    environment: prd
     steps:
     - name: Azure login
       uses: azure/login@v2
